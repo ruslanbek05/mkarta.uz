@@ -1,4 +1,4 @@
-<?php
+<?php 
 class JConfig {
 	public $offline = '0';
 	public $offline_message = 'This site is down for maintenance.<br />Please check back again soon.';
@@ -14,12 +14,12 @@ class JConfig {
 	public $debug_lang_const = '1';
 	public $dbtype = 'mysqli';
 	public $host = 'localhost';
-	public $user = 'u431853174_kmarta_user';
-	public $password = 'X05Y6En0';
-	public $db = 'u431853174_mkarta_db';
+	public $user = 'your user';
+	public $password = 'your password';
+	public $db = 'your database';
 	public $dbprefix = 'zzz_';
 	public $live_site = '';
-	public $secret = '0eNu4Kzd782Wbgcz';
+	public $secret = '';
 	public $gzip = '0';
 	public $error_reporting = 'default';
 	public $helpurl = 'https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}';
