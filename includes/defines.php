@@ -14,7 +14,8 @@ $parts = explode(DIRECTORY_SEPARATOR, JPATH_BASE);
 // Defines.
 define('JPATH_ROOT',          implode(DIRECTORY_SEPARATOR, $parts));
 define('JPATH_SITE',          JPATH_ROOT);
-define('JPATH_CONFIGURATION', JPATH_ROOT);
+//define('JPATH_CONFIGURATION', JPATH_ROOT);
+define('JPATH_CONFIGURATION', JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected');
 define('JPATH_ADMINISTRATOR', JPATH_ROOT . DIRECTORY_SEPARATOR . 'administrator');
 define('JPATH_LIBRARIES',     JPATH_ROOT . DIRECTORY_SEPARATOR . 'libraries');
 define('JPATH_PLUGINS',       JPATH_ROOT . DIRECTORY_SEPARATOR . 'plugins');
