@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.6" client="site" type="language" method="upgrade">
+	<name>Uzbek</name>
+	<tag>uz-UZ</tag>
+	<version>3.6.2.2</version>
+	<creationDate>2016-09-04</creationDate>
+	<author>Uzbek Translation Team</author>
+	<authorEmail>smart@joomlaportal.ru</authorEmail>
+	<authorUrl>www.joomlaportal.ru</authorUrl>
+	<copyright>Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>Uzbek language pack (site) for Joomla! 3.6.2</description>
+	<files>
+		<filename>index.html</filename>
+		<filename>uz-UZ.com_ajax.ini</filename>
+		<filename>uz-UZ.com_config.ini</filename>
+		<filename>uz-UZ.com_contact.ini</filename>
+		<filename>uz-UZ.com_content.ini</filename>
+		<filename>uz-UZ.com_finder.ini</filename>
+		<filename>uz-UZ.com_mailto.ini</filename>
+		<filename>uz-UZ.com_media.ini</filename>
+		<filename>uz-UZ.com_messages.ini</filename>
+		<filename>uz-UZ.com_newsfeeds.ini</filename>
+		<filename>uz-UZ.com_search.ini</filename>
+		<filename>uz-UZ.com_tags.ini</filename>
+		<filename>uz-UZ.com_users.ini</filename>
+		<filename>uz-UZ.com_weblinks.ini</filename>
+		<filename>uz-UZ.com_wrapper.ini</filename>
+		<filename>uz-UZ.files_joomla.sys.ini</filename>
+		<filename>uz-UZ.finder_cli.ini</filename>
+		<filename>uz-UZ.ini</filename>
+		<filename>uz-UZ.lib_fof.ini</filename>
+		<filename>uz-UZ.lib_fof.sys.ini</filename>
+		<filename>uz-UZ.lib_idna_convert.sys.ini</filename>
+		<filename>uz-UZ.lib_joomla.ini</filename>
+		<filename>uz-UZ.lib_joomla.sys.ini</filename>
+		<filename>uz-UZ.lib_phpass.sys.ini</filename>
+		<filename>uz-UZ.lib_phputf8.sys.ini</filename>
+		<filename>uz-UZ.lib_simplepie.sys.ini</filename>
+		<filename>uz-UZ.localise.php</filename>
+		<filename>uz-UZ.mod_articles_archive.ini</filename>
+		<filename>uz-UZ.mod_articles_archive.sys.ini</filename>
+		<filename>uz-UZ.mod_articles_categories.ini</filename>
+		<filename>uz-UZ.mod_articles_categories.sys.ini</filename>
+		<filename>uz-UZ.mod_articles_category.ini</filename>
+		<filename>uz-UZ.mod_articles_category.sys.ini</filename>
+		<filename>uz-UZ.mod_articles_latest.ini</filename>
+		<filename>uz-UZ.mod_articles_latest.sys.ini</filename>
+		<filename>uz-UZ.mod_articles_news.ini</filename>
+		<filename>uz-UZ.mod_articles_news.sys.ini</filename>
+		<filename>uz-UZ.mod_articles_popular.ini</filename>
+		<filename>uz-UZ.mod_articles_popular.sys.ini</filename>
+		<filename>uz-UZ.mod_banners.ini</filename>
+		<filename>uz-UZ.mod_banners.sys.ini</filename>
+		<filename>uz-UZ.mod_breadcrumbs.ini</filename>
+		<filename>uz-UZ.mod_breadcrumbs.sys.ini</filename>
+		<filename>uz-UZ.mod_custom.ini</filename>
+		<filename>uz-UZ.mod_custom.sys.ini</filename>
+		<filename>uz-UZ.mod_feed.ini</filename>
+		<filename>uz-UZ.mod_feed.sys.ini</filename>
+		<filename>uz-UZ.mod_finder.ini</filename>
+		<filename>uz-UZ.mod_finder.sys.ini</filename>
+		<filename>uz-UZ.mod_footer.ini</filename>
+		<filename>uz-UZ.mod_footer.sys.ini</filename>
+		<filename>uz-UZ.mod_languages.ini</filename>
+		<filename>uz-UZ.mod_languages.sys.ini</filename>
+		<filename>uz-UZ.mod_login.ini</filename>
+		<filename>uz-UZ.mod_login.sys.ini</filename>
+		<filename>uz-UZ.mod_menu.ini</filename>
+		<filename>uz-UZ.mod_menu.sys.ini</filename>
+		<filename>uz-UZ.mod_random_image.ini</filename>
+		<filename>uz-UZ.mod_random_image.sys.ini</filename>
+		<filename>uz-UZ.mod_related_items.ini</filename>
+		<filename>uz-UZ.mod_related_items.sys.ini</filename>
+		<filename>uz-UZ.mod_search.ini</filename>
+		<filename>uz-UZ.mod_search.sys.ini</filename>
+		<filename>uz-UZ.mod_stats.ini</filename>
+		<filename>uz-UZ.mod_stats.sys.ini</filename>
+		<filename>uz-UZ.mod_syndicate.ini</filename>
+		<filename>uz-UZ.mod_syndicate.sys.ini</filename>
+		<filename>uz-UZ.mod_tags_popular.ini</filename>
+		<filename>uz-UZ.mod_tags_popular.sys.ini</filename>
+		<filename>uz-UZ.mod_tags_similar.ini</filename>
+		<filename>uz-UZ.mod_tags_similar.sys.ini</filename>
+		<filename>uz-UZ.mod_users_latest.ini</filename>
+		<filename>uz-UZ.mod_users_latest.sys.ini</filename>
+		<filename>uz-UZ.mod_weblinks.ini</filename>
+		<filename>uz-UZ.mod_weblinks.sys.ini</filename>
+		<filename>uz-UZ.mod_whosonline.ini</filename>
+		<filename>uz-UZ.mod_whosonline.sys.ini</filename>
+		<filename>uz-UZ.mod_wrapper.ini</filename>
+		<filename>uz-UZ.mod_wrapper.sys.ini</filename>
+		<filename>uz-UZ.tpl_beez3.ini</filename>
+		<filename>uz-UZ.tpl_beez3.sys.ini</filename>
+		<filename>uz-UZ.tpl_protostar.ini</filename>
+		<filename>uz-UZ.tpl_protostar.sys.ini</filename>
+		<filename file="meta">install.xml</filename>
+		<filename file="meta">uz-UZ.xml</filename>
+	</files>
+
+
+
+	<params />
+</extension>
