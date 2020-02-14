@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_ANALYSIS_TITLE_LIST_VIEW_ANALYZES" option="View">
+        <message>
+                        <![CDATA[COM_ANALYSIS_TITLE_LIST_VIEW_ANALYZES_DESC]]>
+        </message>
+	</layout>
+</metadata>

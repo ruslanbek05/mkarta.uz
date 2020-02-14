@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="created_by" type="createdby" default="0" label="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_CREATED_BY" description="COM_TYPE_OF_ANALYSIS_FORM_DESC_OFANALYSIS_CREATED_BY" hidden="true" hint="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_CREATED_BY"/>
+    <field name="modified_by" type="modifiedby" default="0" label="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_MODIFIED_BY" description="COM_TYPE_OF_ANALYSIS_FORM_DESC_OFANALYSIS_MODIFIED_BY" hidden="true" hint="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_MODIFIED_BY"/>
+    <field name="type_of_analysis_en" filter="safehtml" type="text" label="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_TYPE_OF_ANALYSIS_EN" description="COM_TYPE_OF_ANALYSIS_FORM_DESC_OFANALYSIS_TYPE_OF_ANALYSIS_EN" hint="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_TYPE_OF_ANALYSIS_EN"/>
+    <field name="type_of_analysis_ru" filter="safehtml" type="text" label="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_TYPE_OF_ANALYSIS_RU" description="COM_TYPE_OF_ANALYSIS_FORM_DESC_OFANALYSIS_TYPE_OF_ANALYSIS_RU" hint="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_TYPE_OF_ANALYSIS_RU"/>
+    <field name="type_of_analysis_uz" filter="safehtml" type="text" label="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_TYPE_OF_ANALYSIS_UZ" description="COM_TYPE_OF_ANALYSIS_FORM_DESC_OFANALYSIS_TYPE_OF_ANALYSIS_UZ" hint="COM_TYPE_OF_ANALYSIS_FORM_LBL_OFANALYSIS_TYPE_OF_ANALYSIS_UZ"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>
