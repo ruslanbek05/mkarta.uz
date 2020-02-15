@@ -4,7 +4,7 @@
     <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
     <field name="explanation" filter="safehtml" type="textarea" label="COM_ANALYSIS_FORM_LBL_ANALYSIS_EXPLANATION" description="COM_ANALYSIS_FORM_DESC_ANALYSIS_EXPLANATION" hint="COM_ANALYSIS_FORM_LBL_ANALYSIS_EXPLANATION"/>
     <field name="type_of_analysis" type="foreignkey" label="COM_ANALYSIS_FORM_LBL_ANALYSIS_TYPE_OF_ANALYSIS" description="COM_ANALYSIS_FORM_DESC_ANALYSIS_TYPE_OF_ANALYSIS" class="inputbox" input_type="list" table="#__type_of_analysis" key_field="id" value_field="type_of_analysis_ru" default="0"/>
-    <field name="image" filter="safehtml" type="text" label="COM_ANALYSIS_FORM_LBL_ANALYSIS_IMAGE" description="COM_ANALYSIS_FORM_DESC_ANALYSIS_IMAGE" hint="COM_ANALYSIS_FORM_LBL_ANALYSIS_IMAGE"/>
+    <field name="image" type="FileMultiple" label="COM_ANALYSIS_FORM_LBL_ANALYSIS_IMAGE" description="COM_ANALYSIS_FORM_DESC_ANALYSIS_IMAGE" hint="COM_ANALYSIS_FORM_LBL_ANALYSIS_IMAGE"/>
     <field name="date" class="inputbox" format="%d.%m.%Y" timeformat="24" filter="user_utc" translateformat="false" showtime="false" singleheader="false" todaybutton="true" weeknumbers="false" filltable="false" type="calendar" label="COM_ANALYSIS_FORM_LBL_ANALYSIS_DATE" description="COM_ANALYSIS_FORM_DESC_ANALYSIS_DATE" hint="COM_ANALYSIS_FORM_LBL_ANALYSIS_DATE"/>
     <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
   </fieldset>

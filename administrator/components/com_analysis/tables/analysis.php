@@ -72,6 +72,23 @@ class AnalysisTableanalysis extends \Joomla\CMS\Table\Table
 			else {
 				$array['type_of_analysis'] = '';
 			}
+		// Support for multi file field: image
+		if (!empty($array['image']))
+		{
+			if (is_array($array['image']))
+			{
+				$array['image'] = implode(',', $array['image']);
+			}
+			elseif (strpos($array['image'], ',') != false)
+			{
+				$array['image'] = explode(',', $array['image']);
+			}
+		}
+		else
+		{
+			$array['image'] = '';
+		}
+
 
 		// Support for empty date field: date
 		if($array['date'] == '0000-00-00' )
@@ -158,6 +175,15 @@ class AnalysisTableanalysis extends \Joomla\CMS\Table\Table
 	 */
 	public function check()
 	{
+		
+		
+		//require_once("../mkarta.uz_protected/image.php");
+		require_once("myfunc.php");
+		
+		
+		
+		
+		
 		// If there is an ordering column and this is a new row then get the next ordering value
 		if (property_exists($this, 'ordering') && $this->id == 0)
 		{
@@ -165,6 +191,127 @@ class AnalysisTableanalysis extends \Joomla\CMS\Table\Table
 		}
 		
 		
+		// Support multi file field: image
+		$app = JFactory::getApplication();
+		$files = $app->input->files->get('jform', array(), 'raw');
+		$array = $app->input->get('jform', array(), 'ARRAY');
+		
+		$user = JFactory::getUser();
+		$my_user_id = $user->id;
+		
+
+		if ($files['image'][0]['size'] > 0)
+		{
+			// Deleting existing files
+			$oldFiles = AnalysisHelper::getFiles($this->id, $this->_tbl, 'image');
+
+			foreach ($oldFiles as $f)
+			{
+				$f = '/images/' . $my_yil . '/' . $my_oy . '/' . $my_kun . '/' . $my_user_id . '/' . $my_timestamp . '_' . $f;
+				$oldFile = JPATH_ROOT . '/images/' . $f;
+
+				if (file_exists($oldFile) && !is_dir($oldFile))
+				{
+					unlink($oldFile);
+				}
+			}
+
+			$this->image = "";
+
+			foreach ($files['image'] as $singleFile )
+			{
+				jimport('joomla.filesystem.file');
+
+				// Check if the server found any error.
+				$fileError = $singleFile['error'];
+				$message = '';
+
+				if ($fileError > 0 && $fileError != 4)
+				{
+					switch ($fileError)
+					{
+						case 1:
+							$message = JText::_('File size exceeds allowed by the server');
+							break;
+						case 2:
+							$message = JText::_('File size exceeds allowed by the html form');
+							break;
+						case 3:
+							$message = JText::_('Partial upload error');
+							break;
+					}
+
+					if ($message != '')
+					{
+						$app->enqueueMessage($message, 'warning');
+
+						return false;
+					}
+				}
+				elseif ($fileError == 4)
+				{
+					if (isset($array['image']))
+					{
+						$this->image = $array['image'];
+					}
+				}
+				else
+				{
+
+					// Replace any special characters in the filename
+					jimport('joomla.filesystem.file');
+					$filename = JFile::stripExt($singleFile['name']);
+					$extension = JFile::getExt($singleFile['name']);
+					$filename = preg_replace("/[^A-Za-z0-9]/i", "-", $filename);
+					$filename = $filename . '.' . $extension;
+					$filename = $my_yil . '/' . $my_oy . '/' . $my_kun . '/' . $my_user_id . '/' . $my_timestamp . '_' . $filename;
+					
+					//$papka = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/';
+					$filename_protected = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/' . $filename;
+					$filename_temp = JPATH_ROOT . '/images/temp/' . $filename;
+					$filename_thumb = JPATH_ROOT . '/images/thumb/' . $singleFile;
+					
+					$uploadPath = JPATH_ROOT . '/images/' . $filename;
+					$fileTemp = $singleFile['tmp_name'];
+
+					if (!JFile::exists($filename_protected))
+					{
+						if (!JFile::upload($fileTemp, $filename_protected))
+						{
+							$app->enqueueMessage('Error moving file', 'warning');
+
+							return false;
+						}
+						//create thumb
+						if (!JFile::exists($filename_protected))
+					{
+						create_file_with_dir_index_html($filename_thumb);
+						create_file_with_dir_index_html($filename_temp);
+						make_thumb($filename_protected, $filename_thumb);
+						//echo "file exists";
+						//die;
+					}else{
+						//make_thumb($filename_protected, $filename_protected);
+						//echo "file does not exists</br>";
+						//echo $filename_protected;
+						//die;
+					}
+						
+						//encode
+						//encryptFile($uploadPath, $key, $uploadPath . '.enc');
+						//if(JFile::delete($uploadPath)){};
+						//$filename = $filename . '.enc';
+					}
+
+					$this->image .= (!empty($this->image)) ? "," : "";
+					$this->image .= $filename;
+				}
+			}
+		}
+		else
+		{
+			$this->image .= $array['image_hidden'];
+		}
 
 		return parent::check();
 	}
@@ -306,6 +453,25 @@ class AnalysisTableanalysis extends \Joomla\CMS\Table\Table
 		$this->load($pk);
 		$result = parent::delete($pk);
 		
+		if ($result)
+		{
+			jimport('joomla.filesystem.file');
+
+			$checkImageVariableType = gettype($this->image);
+
+			switch ($checkImageVariableType)
+			{
+			case 'string':
+				JFile::delete(JPATH_ROOT . '/images/' . $this->image);
+			break;
+			default:
+			foreach ($this->image as $imageFile)
+			{
+				JFile::delete(JPATH_ROOT . '/images/' . $imageFile);
+			}
+			}
+		}
+
 		return $result;
 	}
 }

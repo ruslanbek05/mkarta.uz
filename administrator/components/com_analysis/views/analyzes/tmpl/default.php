@@ -159,7 +159,18 @@ $sortFields = $this->getSortFields();
 					<?php echo $item->type_of_analysis; ?>
 				</td>				<td>
 
-					<?php echo $item->image; ?>
+					<?php
+						if (!empty($item->image)) :
+							$imageArr = explode(',', $item->image);
+							foreach ($imageArr as $fileSingle) :
+								if (!is_array($fileSingle)) :
+									$uploadPath = 'images' .DIRECTORY_SEPARATOR . $fileSingle;
+									echo '<a href="' . JRoute::_(JUri::root() . $uploadPath, false) . '" target="_blank" title="See the image">' . $fileSingle . '</a> | ';
+								endif;
+							endforeach;
+						else:
+							echo $item->image;
+						endif; ?>
 				</td>				<td>
 
 					<?php echo $item->date; ?>

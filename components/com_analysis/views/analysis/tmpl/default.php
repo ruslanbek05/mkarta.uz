@@ -34,7 +34,26 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_analysis')
 
 		<tr>
 			<th><?php echo JText::_('COM_ANALYSIS_FORM_LBL_ANALYSIS_IMAGE'); ?></th>
-			<td><?php echo $this->item->image; ?></td>
+			<td>
+			<?php
+			require_once("myfunc.php");
+			foreach ((array) $this->item->image as $singleFile) : 
+				if (!is_array($singleFile)) : 
+					$uploadPath = 'images' . DIRECTORY_SEPARATOR . $singleFile;
+					
+					$filename_protected = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/' . $singleFile;
+					$filename_temp = 'images/temp/' . $singleFile;
+					if (!JFile::exists($filename_temp))
+					{
+						create_file_with_dir_index_html($filename_temp);
+						JFile::copy($filename_protected, $filename_temp);
+					}
+					echo '<img src="'.$filename_temp.'" alt="'.basename($filename_temp).'">';
+					
+					 //echo '<a href="' . JRoute::_(JUri::root() . $uploadPath, false) . '" target="_blank">' . $singleFile . '</a> ';
+				endif;
+			endforeach;
+		?></td>
 		</tr>
 
 		<tr>

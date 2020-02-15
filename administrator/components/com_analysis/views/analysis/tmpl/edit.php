@@ -81,6 +81,16 @@ $document->addStyleSheet(Uri::root() . 'media/com_analysis/css/form.css');
 				}
 				?>
 				<?php echo $this->form->renderField('image'); ?>
+				<?php if (!empty($this->item->image)) : ?>
+					<?php $imageFiles = array(); ?>
+					<?php foreach ((array)$this->item->image as $fileSingle) : ?>
+						<?php if (!is_array($fileSingle)) : ?>
+							<a href="<?php echo JRoute::_(JUri::root() . 'images' . DIRECTORY_SEPARATOR . $fileSingle, false);?>"><?php echo $fileSingle; ?></a> | 
+							<?php $imageFiles[] = $fileSingle; ?>
+						<?php endif; ?>
+					<?php endforeach; ?>
+					<input type="hidden" name="jform[image_hidden]" id="jform_image_hidden" value="<?php echo implode(',', $imageFiles); ?>" />
+				<?php endif; ?>
 				<?php echo $this->form->renderField('date'); ?>
 				<?php if ($this->state->params->get('save_history', 1)) : ?>
 					<div class="control-group">

@@ -111,8 +111,38 @@ $document->addStyleSheet(Uri::root() . 'media/com_analysis/css/list.css');
 				</td>
 				<td>
 
-					<?php echo $item->image; ?>
-				</td>
+					<?php
+					//require_once("../mkarta.uz_protected/image.php");
+		require_once("myfunc.php");
+						if (!empty($item->image)) :
+							$imageArr = (array) explode(',', $item->image);
+							foreach ($imageArr as $singleFile) : 
+								if (!is_array($singleFile)) :
+									$uploadPath = 'images' . DIRECTORY_SEPARATOR . 'thumb' . DIRECTORY_SEPARATOR . $singleFile;
+					$filename_protected = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/' . $singleFile;
+					$filename_temp = 'images/temp/' . $singleFile;
+					$filename_thumb = 'images/thumb/' . $singleFile;
+					if (!JFile::exists($filename_thumb))
+					{
+						//echo "<img src=\".$filename_temp.\" alt=\"error\">";
+						create_file_with_dir_index_html($filename_thumb);
+						create_file_with_dir_index_html($filename_temp);
+						make_thumb($filename_protected, $filename_thumb);
+						//echo $filename_protected;
+						//echo "file exists2";
+						//die;
+					}else{
+						//echo "file does not exists</br>";
+						//echo $filename_protected;
+						//die;
+					}
+					
+									echo '<img src="'.$filename_thumb.'" alt="'.basename($filename_thumb).'" width="100" height="100">';
+								endif;
+							endforeach;
+						else:
+							echo $item->image;
+						endif; ?>				</td>
 				<td>
 
 					<?php echo $item->date; ?>

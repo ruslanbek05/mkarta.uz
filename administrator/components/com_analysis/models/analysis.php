@@ -199,6 +199,18 @@ class AnalysisModelAnalysis extends \Joomla\CMS\MVC\Model\AdminModel
 					$table->type_of_analysis = '';
 				}
 
+				if (!empty($table->image))
+				{
+					if (is_array($table->image))
+					{
+						$table->image = implode(',', $table->image);
+					}
+				}
+				else
+				{
+					$table->image = '';
+				}
+
 
 				// Trigger the before save event.
 				$result = $dispatcher->trigger($this->event_before_save, array($context, &$table, true));
