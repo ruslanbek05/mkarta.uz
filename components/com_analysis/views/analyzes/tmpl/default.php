@@ -1,5 +1,5 @@
 <?php
-/**
+/** 
  * @version    CVS: 1.0.0
  * @package    Com_Analysis
  * @author     ruslan qodirov <ruslan9832@mail.ru>
