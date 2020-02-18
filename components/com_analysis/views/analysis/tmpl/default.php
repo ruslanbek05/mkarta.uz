@@ -9,6 +9,81 @@
 // No direct access
 defined('_JEXEC') or die;
 
+
+
+
+
+
+
+
+
+
+		use Joomla\CMS\Factory;
+		$can_see = FALSE;
+		$user = Factory::getUser();
+		$groups = $user->get('groups');
+		$selecteduser = JRequest::getVar('selecteduser');
+		//print_r($groups);die;
+		
+		
+
+			//$selecteduser given. check if user a doctor
+			$db_user_group_name = JFactory::getDbo();
+			if($user->get('id') > 0){
+				//signed in user
+				$doctormi = FALSE;
+				foreach ($groups as $group)
+				{
+				    //echo '<p>Group = ' . $group . '</p>';
+					$query_user_group_name = $db_user_group_name
+					    ->getQuery(true)
+					    ->select('title')
+					    ->from($db_user_group_name->quoteName('#__usergroups'))
+					    ->where($db_user_group_name->quoteName('id') . " = " . $db_user_group_name->quote($group));
+
+					$db_user_group_name->setQuery($query_user_group_name);
+					$result_user_group_name = $db_user_group_name->loadResult();
+					//print_r($result_user_group_name);die;
+					//echo $result_user_group_name['title'];die;
+					if($result_user_group_name == "Doctor"){
+						//echo "bu doctor";die;
+						$doctormi = TRUE;
+						//$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+					}
+				}
+				if($doctormi){
+					//doctor
+					//$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+					$can_see = TRUE;
+				}else{
+					//doctor emas
+					//null. only own
+					if($this->item->created_by == $user->get('id')){
+					$can_see = TRUE;
+					}
+				}
+			}
+			else{
+				//not signed in user
+				//null. only own
+				//$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
+				$can_see = FALSE;
+			}
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $canEdit = JFactory::getUser()->authorise('core.edit', 'com_analysis');
 
 if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_analysis'))
@@ -24,12 +99,19 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_analysis')
 
 		<tr>
 			<th><?php echo JText::_('COM_ANALYSIS_FORM_LBL_ANALYSIS_EXPLANATION'); ?></th>
-			<td><?php echo nl2br($this->item->explanation); ?></td>
+			<td><?php 
+			if($can_see == TRUE){
+				echo nl2br($this->item->explanation);
+				} ?></td>
 		</tr>
 
 		<tr>
 			<th><?php echo JText::_('COM_ANALYSIS_FORM_LBL_ANALYSIS_TYPE_OF_ANALYSIS'); ?></th>
-			<td><?php echo $this->item->type_of_analysis; ?></td>
+			<td><?php 
+			if($can_see == TRUE){
+				echo $this->item->type_of_analysis;
+				}
+				 ?></td>
 		</tr>
 
 		<tr>
@@ -37,6 +119,9 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_analysis')
 			<td>
 			<?php
 			require_once("myfunc.php");
+			
+				
+			if($can_see == TRUE){
 			foreach ((array) $this->item->image as $singleFile) : 
 				if (!is_array($singleFile)) : 
 					$uploadPath = 'images' . DIRECTORY_SEPARATOR . $singleFile;
@@ -53,12 +138,15 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_analysis')
 					 //echo '<a href="' . JRoute::_(JUri::root() . $uploadPath, false) . '" target="_blank">' . $singleFile . '</a> ';
 				endif;
 			endforeach;
+			}
 		?></td>
 		</tr>
 
 		<tr>
 			<th><?php echo JText::_('COM_ANALYSIS_FORM_LBL_ANALYSIS_DATE'); ?></th>
-			<td><?php echo $this->item->date; ?></td>
+			<td><?php if($can_see == TRUE){
+				echo $this->item->date;
+				} ?></td>
 		</tr>
 
 	</table>
