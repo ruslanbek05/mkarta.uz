@@ -268,8 +268,8 @@ class AnalysisTableanalysis extends \Joomla\CMS\Table\Table
 					
 					//$papka = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/';
 					$filename_protected = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/' . $filename;
-					$filename_temp = JPATH_ROOT . '/images/temp/' . $filename;
-					$filename_thumb = JPATH_ROOT . '/images/thumb/' . $singleFile;
+					$filename_temp = JPATH_ROOT . '/pic_ture/temp/' . $filename;
+					$filename_thumb = JPATH_ROOT . '/pic_ture/thumb/' . $singleFile;
 					
 					$uploadPath = JPATH_ROOT . '/images/' . $filename;
 					$fileTemp = $singleFile['tmp_name'];

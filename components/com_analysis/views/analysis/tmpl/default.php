@@ -127,7 +127,7 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_analysis')
 					$uploadPath = 'images' . DIRECTORY_SEPARATOR . $singleFile;
 					
 					$filename_protected = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/' . $singleFile;
-					$filename_temp = 'images/temp/' . $singleFile;
+					$filename_temp = 'pic_ture/temp/' . $singleFile;
 					if (!JFile::exists($filename_temp))
 					{
 						create_file_with_dir_index_html($filename_temp);

@@ -118,10 +118,10 @@ $document->addStyleSheet(Uri::root() . 'media/com_analysis/css/list.css');
 							$imageArr = (array) explode(',', $item->image);
 							foreach ($imageArr as $singleFile) : 
 								if (!is_array($singleFile)) :
-									$uploadPath = 'images' . DIRECTORY_SEPARATOR . 'thumb' . DIRECTORY_SEPARATOR . $singleFile;
+									$uploadPath = 'pic_ture' . DIRECTORY_SEPARATOR . 'thumb' . DIRECTORY_SEPARATOR . $singleFile;
 					$filename_protected = JPATH_ROOT . DIRECTORY_SEPARATOR . '../mkarta.uz_protected/images/' . $singleFile;
-					$filename_temp = 'images/temp/' . $singleFile;
-					$filename_thumb = 'images/thumb/' . $singleFile;
+					$filename_temp = 'pic_ture/temp/' . $singleFile;
+					$filename_thumb = 'pic_ture/thumb/' . $singleFile;
 					if (!JFile::exists($filename_thumb))
 					{
 						//echo "<img src=\".$filename_temp.\" alt=\"error\">";
