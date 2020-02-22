@@ -38,10 +38,6 @@ $document->addStyleSheet(Uri::root() . 'media/com_doctorinfo/css/form.css');
 		}
 		else {
 			
-				if (js('#jform_file').val() == '' && js('#jform_file_hidden').val() == '') {
-					alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
-					return;
-				}
 			if (task != 'doctorinfo.cancel' && document.formvalidator.isValid(document.id('doctorinfo-form'))) {
 				
 				Joomla.submitform(task, document.getElementById('doctorinfo-form'));
