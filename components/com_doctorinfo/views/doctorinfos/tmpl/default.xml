@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_DOCTORINFO_TITLE_LIST_VIEW_DOCTORINFOS" option="View">
+        <message>
+                        <![CDATA[COM_DOCTORINFO_TITLE_LIST_VIEW_DOCTORINFOS_DESC]]>
+        </message>
+	</layout>
+</metadata>

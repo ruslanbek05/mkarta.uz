@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="created_by" type="createdby" default="0" label="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_CREATED_BY" description="COM_DOCTORINFO_FORM_DESC_DOCTORINFO_CREATED_BY" hidden="true" hint="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_CREATED_BY"/>
+    <field name="date_data_added" default="0000-00-00" type="calendar" class="inputbox" filter="safehtml" label="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_DATE_DATA_ADDED" description="COM_DOCTORINFO_FORM_DESC_DOCTORINFO_DATE_DATA_ADDED" hidden="true" hint="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_DATE_DATA_ADDED"/>
+    <field name="file" type="FileMultiple" required="true" label="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_FILE" description="COM_DOCTORINFO_FORM_DESC_DOCTORINFO_FILE" hint="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_FILE"/>
+    <field name="additional_information" filter="safehtml" type="textarea" label="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_ADDITIONAL_INFORMATION" description="COM_DOCTORINFO_FORM_DESC_DOCTORINFO_ADDITIONAL_INFORMATION" hint="COM_DOCTORINFO_FORM_LBL_DOCTORINFO_ADDITIONAL_INFORMATION"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>
