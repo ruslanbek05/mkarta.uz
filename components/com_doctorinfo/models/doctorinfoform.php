@@ -324,8 +324,12 @@ class DoctorinfoModelDoctorinfoForm extends \Joomla\CMS\MVC\Model\FormModel
         {
             throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
         }
-
+        
+        $date = date('Y-m-d H:i:s');
+        $data['date_data_added'] = $date;
         $table = $this->getTable();
+        
+        //print_r($data);die;
 
         if ($table->save($data) === true)
         {
