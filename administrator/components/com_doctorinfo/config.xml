@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
     <fieldset label="COM_DOCTORINFO" name="doctorinfo">
-        
+        <field name="image_upload_path" filter="safehtml" type="text" label="COM_DOCTORINFO_FORM_LBL_IMAGE_UPLOAD_PATH" description="COM_DOCTORINFO_FORM_DESC_IMAGE_UPLOAD_PATH" hint="COM_DOCTORINFO_FORM_LBL_IMAGE_UPLOAD_PATH"/>
+
     </fieldset>
 
     <fieldset name="permissions" description="JCONFIG_PERMISSIONS_DESC" label="JCONFIG_PERMISSIONS_LABEL">

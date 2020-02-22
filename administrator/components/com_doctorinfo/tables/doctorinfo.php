@@ -239,17 +239,7 @@ class DoctorinfoTabledoctorinfo extends \Joomla\CMS\Table\Table
 						return false;
 					}
 
-					// Check for filetype
-					$okMIMETypes = 'image';
-					$validMIMEArray = explode(',', $okMIMETypes);
-					$fileMime = $singleFile['type'];
 
-					if (!in_array($fileMime, $validMIMEArray))
-					{
-						$app->enqueueMessage('This filetype is not allowed', 'warning');
-
-						return false;
-					}
 
 					// Replace any special characters in the filename
 					jimport('joomla.filesystem.file');
