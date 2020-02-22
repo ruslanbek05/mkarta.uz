@@ -126,6 +126,45 @@ class DoctorinfoModelDoctorinfos extends \Joomla\CMS\MVC\Model\ListModel
                 }
             }
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        $user = Factory::getUser();
+		$selecteduser = JRequest::getVar('selecteduser');
+		
+		if ($selecteduser<>null) {
+			//$selecteduser is given. show own
+			if($user->get('id') > 0){
+				//signed in user
+				$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+				
+			}
+			else{
+				//not signed in user
+				//null. only own
+				$query->where("a.created_by = 0");	
+			}
+		}else{
+			//$selecteduser is not given. show selected user
+			$query->where("a.created_by = '".$db->escape($user->get('id'))."'");
+		}
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
             // Add the list ordering clause.
             $orderCol  = $this->state->get('list.ordering', "a.id");
