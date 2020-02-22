@@ -30,6 +30,60 @@ class DoctorinfoControllerDoctorinfo extends \Joomla\CMS\MVC\Controller\BaseCont
      *
      * @throws Exception
 	 */
+	 
+public function add_to_doctor()
+	{
+		$app = Factory::getApplication();
+		
+		$editId     = $app->input->getInt('id', 0);
+
+		
+
+//get doctor group id
+$db_user_group_name = JFactory::getDbo();
+$query_user_group_name = $db_user_group_name
+					    ->getQuery(true)
+					    ->select('id')
+					    ->from($db_user_group_name->quoteName('#__usergroups'))
+					    ->where($db_user_group_name->quoteName('title') . " = 'Doctor'");
+
+					$db_user_group_name->setQuery($query_user_group_name);
+					$result_user_group_name = $db_user_group_name->loadResult();
+//echo $result_user_group_name;die;
+
+
+// Get a db connection.
+$db = JFactory::getDbo();
+
+// Create a new query object.
+$query = $db->getQuery(true);
+
+// Insert columns.
+$columns = array('user_id', 'group_id');
+
+// Insert values.
+$values = array($db->quote($editId), $db->quote($result_user_group_name));
+
+// Prepare the insert query.
+$query
+    ->insert($db->quoteName('#__user_usergroup_map'))
+    ->columns($db->quoteName($columns))
+    ->values(implode(',', $values));
+
+// Set the query using our newly populated query object and execute it.
+$db->setQuery($query);
+$db->execute();
+
+
+
+
+		
+		
+		
+	}	 
+	 
+	 
+	 
 	public function edit()
 	{
 		$app = Factory::getApplication();

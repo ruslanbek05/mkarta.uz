@@ -9,6 +9,59 @@
 // No direct access
 defined('_JEXEC') or die;
 
+
+
+
+
+
+
+
+
+
+use \Joomla\CMS\Factory;
+		$user = Factory::getUser();
+		$groups = $user->get('groups');
+		
+			$Managermi = FALSE;
+			$db_user_group_name = JFactory::getDbo();
+			if($user->get('id') > 0){
+				//signed in user
+				
+				foreach ($groups as $group)
+				{
+				    //echo '<p>Group = ' . $group . '</p>';
+					$query_user_group_name = $db_user_group_name
+					    ->getQuery(true)
+					    ->select('title')
+					    ->from($db_user_group_name->quoteName('#__usergroups'))
+					    ->where($db_user_group_name->quoteName('id') . " = " . $db_user_group_name->quote($group));
+
+					$db_user_group_name->setQuery($query_user_group_name);
+					$result_user_group_name = $db_user_group_name->loadResult();
+
+					if($result_user_group_name == "Manager"){
+						//echo "bu doctor";die;
+						$Managermi = TRUE;
+
+					}
+				}
+				
+			}
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
 $canEdit = JFactory::getUser()->authorise('core.edit', 'com_doctorinfo');
 
 if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_doctorinfo'))
@@ -78,3 +131,42 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_doctorinfo
 	</div>
 
 <?php endif; ?>
+
+<?php
+//print_r($this->item->created_by);die;
+ if($Managermi): 
+ 			$doctorga_qushilmaganmi = FALSE;
+			// Get a db connection.
+$db = JFactory::getDbo();
+
+// Create a new query object.
+$query = $db->getQuery(true);
+
+// Select all articles for users who have a username which starts with 'a'.
+// Order it by the created date.
+// Note by putting 'a' as a second parameter will generate `#__content` AS `a`
+$query
+    ->select(array('a.*', 'b.title'))
+    ->from($db->quoteName('#__user_usergroup_map', 'a'))
+    ->join('INNER', $db->quoteName('#__usergroups', 'b') . ' ON ' . $db->quoteName('a.group_id') . ' = ' . $db->quoteName('b.id'))
+    ->where($db->quoteName('a.user_id') . " = " . $this->item->created_by)
+    ->where($db->quoteName('b.title') . " = 'Doctor'");
+
+// Reset the query using our newly populated query object.
+$db->setQuery($query);
+
+// Load the results as a list of stdClass objects (see later for more options on retrieving data).
+$row = $db->loadAssoc();
+//print_r($row['title']);die;
+if($row['title'] == "Doctor"){
+	$doctorga_qushilmaganmi = TRUE;
+}
+				
+				
+if(!$doctorga_qushilmaganmi):	
+?>
+ 	<a class="btn" href="<?php echo JRoute::_('index.php?option=com_doctorinfo&task=doctorinfo.add_to_doctor&id='.$this->item->created_by); ?>"><?php echo "add to doctor"; ?></a>
+
+<?php endif; ?>
+<?php endif; ?>
+

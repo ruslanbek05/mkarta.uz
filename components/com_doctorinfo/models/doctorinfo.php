@@ -282,6 +282,12 @@ class DoctorinfoModelDoctorinfo extends \Joomla\CMS\MVC\Model\ItemModel
                     return $table->delete($id);
                 
 	}
+	
+	
 
+	
+	
+	
+	
 	
 }
