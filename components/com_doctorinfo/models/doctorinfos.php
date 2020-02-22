@@ -156,7 +156,61 @@ class DoctorinfoModelDoctorinfos extends \Joomla\CMS\MVC\Model\ListModel
 		}
             
             
-            
+		$user = Factory::getUser();
+		$groups = $user->get('groups');
+		$selecteduser = JRequest::getVar('selecteduser');
+		//print_r($groups);die;
+		
+		
+		if ($selecteduser<>null) {
+			//$selecteduser given. check if user a doctor
+			$db_user_group_name = JFactory::getDbo();
+			if($user->get('id') > 0){
+				//signed in user
+				$Managermi = FALSE;
+				foreach ($groups as $group)
+				{
+				    //echo '<p>Group = ' . $group . '</p>';
+					$query_user_group_name = $db_user_group_name
+					    ->getQuery(true)
+					    ->select('title')
+					    ->from($db_user_group_name->quoteName('#__usergroups'))
+					    ->where($db_user_group_name->quoteName('id') . " = " . $db_user_group_name->quote($group));
+
+					$db_user_group_name->setQuery($query_user_group_name);
+					$result_user_group_name = $db_user_group_name->loadResult();
+					//print_r($result_user_group_name);die;
+					//echo $result_user_group_name['title'];die;
+					if($result_user_group_name == "Manager"){
+						//echo "bu doctor";die;
+						$Managermi = TRUE;
+						$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+					}
+				}
+				if($Managermi){
+					//doctor
+					//$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+				}else{
+					//manager emas
+					//null. show selected
+					//$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
+					$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+				}
+			}
+			else{
+				//not signed in user
+				//null. only own
+				//$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
+				$query->where("a.created_by = 0");	
+			}
+		}else{
+			//null. only own
+			$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
+		}
+		
+		
+		
+		            
             
             
             
