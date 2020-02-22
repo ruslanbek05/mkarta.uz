@@ -108,6 +108,7 @@ $document->addStyleSheet(Uri::root() . 'media/com_doctorinfo/css/list.css');
 				<td>
 
 					<?php
+					require_once("myfunc.php");
 						if (!empty($item->file)) :
 							$fileArr = (array) explode(',', $item->file);
 							foreach ($fileArr as $singleFile) : 
@@ -115,7 +116,7 @@ $document->addStyleSheet(Uri::root() . 'media/com_doctorinfo/css/list.css');
 									$uploadPath = 'pic_ture' . DIRECTORY_SEPARATOR . 'docinfo' . $singleFile;
 					$filename_constant = 'pic_ture/docinfo/' . $singleFile;
 					$filename_thumb = 'pic_ture/thumb/' . $singleFile;
-					if (!JFile::exists($filename_constant))
+					if (!JFile::exists($filename_thumb))
 					{
 						//echo "<img src=\".$filename_temp.\" alt=\"error\">";
 						create_file_with_dir_index_html($filename_constant);

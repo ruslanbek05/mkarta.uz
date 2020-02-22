@@ -26,10 +26,15 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_doctorinfo
 			<th><?php echo JText::_('COM_DOCTORINFO_FORM_LBL_DOCTORINFO_FILE'); ?></th>
 			<td>
 			<?php
+			require_once("myfunc.php");
 			foreach ((array) $this->item->file as $singleFile) : 
 				if (!is_array($singleFile)) : 
 					$uploadPath = 'uploads' . DIRECTORY_SEPARATOR . $singleFile;
-					 echo '<a href="' . JRoute::_(JUri::root() . $uploadPath, false) . '" target="_blank">' . $singleFile . '</a> ';
+					
+					$filename_constant = 'pic_ture/docinfo/' . $singleFile;
+					echo '<img src="'.$filename_constant.'" alt="'.basename($filename_constant).'">';
+					
+					 //echo '<a href="' . JRoute::_(JUri::root() . $uploadPath, false) . '" target="_blank">' . $singleFile . '</a> ';
 				endif;
 			endforeach;
 		?></td>
