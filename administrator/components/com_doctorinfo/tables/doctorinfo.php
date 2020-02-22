@@ -155,6 +155,10 @@ class DoctorinfoTabledoctorinfo extends \Joomla\CMS\Table\Table
 	 */
 	public function check()
 	{
+		
+		
+		
+		
 		// If there is an ordering column and this is a new row then get the next ordering value
 		if (property_exists($this, 'ordering') && $this->id == 0)
 		{
@@ -166,6 +170,8 @@ class DoctorinfoTabledoctorinfo extends \Joomla\CMS\Table\Table
 		$app = JFactory::getApplication();
 		$files = $app->input->files->get('jform', array(), 'raw');
 		$array = $app->input->get('jform', array(), 'ARRAY');
+		
+		
 
 		if ($files['file'][0]['size'] > 0)
 		{
@@ -251,17 +257,51 @@ class DoctorinfoTabledoctorinfo extends \Joomla\CMS\Table\Table
 					$extension = JFile::getExt($singleFile['name']);
 					$filename = preg_replace("/[^A-Za-z0-9]/i", "-", $filename);
 					$filename = $filename . '.' . $extension;
+					
+					
+					
+					
+					
+					//require_once("../mkarta.uz_protected/image.php");
+					require_once("myfunc.php");
+					
+					$user = JFactory::getUser();
+					$my_user_id = $user->id;
+		
+					$filename = $my_yil . '/' . $my_oy . '/' . $my_kun . '/' . $my_user_id . '/' . $my_timestamp . '_' . $filename;
+					$filename_constant = JPATH_ROOT . '/pic_ture/docinfo/' . $filename;
+					$filename_thumb = JPATH_ROOT . '/pic_ture/docinfo/' . $singleFile;
+					
 					$uploadPath = JPATH_ROOT . '/uploads/' . $filename;
 					$fileTemp = $singleFile['tmp_name'];
+					
+					
+					
+					
 
-					if (!JFile::exists($uploadPath))
+					if (!JFile::exists($filename_constant))
 					{
-						if (!JFile::upload($fileTemp, $uploadPath))
+						if (!JFile::upload($fileTemp, $filename_constant))
 						{
 							$app->enqueueMessage('Error moving file', 'warning');
 
 							return false;
 						}
+						
+						//create thumb
+						if (!JFile::exists($filename_constant))
+					{
+						create_file_with_dir_index_html($filename_thumb);
+						create_file_with_dir_index_html($filename_constant);
+						make_thumb($filename_constant, $filename_thumb);
+						//echo "file exists";
+						//die;
+					}else{
+						//make_thumb($filename_protected, $filename_protected);
+						//echo "file does not exists</br>";
+						//echo $filename_protected;
+						//die;
+					}
 					}
 
 					$this->file .= (!empty($this->file)) ? "," : "";

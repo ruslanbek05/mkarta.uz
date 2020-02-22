@@ -112,8 +112,25 @@ $document->addStyleSheet(Uri::root() . 'media/com_doctorinfo/css/list.css');
 							$fileArr = (array) explode(',', $item->file);
 							foreach ($fileArr as $singleFile) : 
 								if (!is_array($singleFile)) :
-									$uploadPath = 'uploads' . DIRECTORY_SEPARATOR . $singleFile;
-									echo '<a href="' . JRoute::_(JUri::root() . $uploadPath, false) . '" target="_blank" title="See the file">' . $singleFile . '</a> ';
+									$uploadPath = 'pic_ture' . DIRECTORY_SEPARATOR . 'docinfo' . $singleFile;
+					$filename_constant = 'pic_ture/docinfo/' . $singleFile;
+					$filename_thumb = 'pic_ture/thumb/' . $singleFile;
+					if (!JFile::exists($filename_constant))
+					{
+						//echo "<img src=\".$filename_temp.\" alt=\"error\">";
+						create_file_with_dir_index_html($filename_constant);
+						create_file_with_dir_index_html($filename_thumb);
+						make_thumb($filename_constant, $filename_thumb);
+						//echo $filename_protected;
+						//echo "file exists2";
+						//die;
+					}else{
+						//echo "file does not exists</br>";
+						//echo $filename_protected;
+						//die;
+					}
+									//echo '<a href="' . JRoute::_(JUri::root() . $uploadPath, false) . '" target="_blank" title="See the file">' . $singleFile . '</a> ';
+						echo '<img src="'.$filename_thumb.'" alt="'.basename($filename_thumb).'" width="100" height="100">';
 								endif;
 							endforeach;
 						else:
