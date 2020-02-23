@@ -38,7 +38,7 @@ $document->addStyleSheet(Uri::root() . 'media/com_user_list/css/list.css');
 <form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post"
       name="adminForm" id="adminForm">
 
-	
+	<?php echo JLayoutHelper::render('default_filter', array('view' => $this), dirname(__FILE__)); ?>
         <div class="table-responsive">
 	<table class="table table-striped" id="listList">
 		<thead>

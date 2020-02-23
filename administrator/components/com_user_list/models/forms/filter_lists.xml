@@ -28,7 +28,7 @@
                default="a.id DESC"
         >
             <option value="">JGLOBAL_SORT_BY</option>
-            <option value="a.`id` ASC">ID Ascending</option><option value="a.`id` DESC">ID Descending</option><option value="a.`avatar` ASC">Avatar Ascending</option><option value="a.`avatar` DESC">Avatar Descending</option><option value="a.`username` ASC">Avatar Ascending</option><option value="a.`username` DESC">Avatar Descending</option><option value="a.`year_of_birth` ASC">Avatar Ascending</option><option value="a.`year_of_birth` DESC">Avatar Descending</option><option value="a.`gender` ASC">Avatar Ascending</option><option value="a.`gender` DESC">Avatar Descending</option><option value="a.`view_health_info` ASC">Avatar Ascending</option><option value="a.`view_health_info` DESC">Avatar Descending</option>
+            <option value="a.`id` ASC">ID Ascending</option><option value="a.`id` DESC">ID Descending</option><option value="a.`avatar` ASC">Avatar Ascending</option><option value="a.`avatar` DESC">Avatar Descending</option><option value="a.`username` ASC">username Ascending</option><option value="a.`username` DESC">username Descending</option><option value="a.`year_of_birth` ASC">year of birth Ascending</option><option value="a.`year_of_birth` DESC">year of birth Descending</option><option value="a.`gender` ASC">gender Ascending</option><option value="a.`gender` DESC">gender Descending</option><option value="a.`view_health_info` ASC">view health info Ascending</option><option value="a.`view_health_info` DESC">view health info Descending</option>
 
         </field>
 

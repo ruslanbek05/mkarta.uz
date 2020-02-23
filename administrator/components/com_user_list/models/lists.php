@@ -143,7 +143,7 @@ class User_listModelLists extends \Joomla\CMS\MVC\Model\ListModel
 			else
 			{
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
-				
+				$query->where('( a.username LIKE ' . $search . ' )');
 			}
 		}
                 
