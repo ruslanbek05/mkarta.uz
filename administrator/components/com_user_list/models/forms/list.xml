@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="created_by" type="createdby" default="0" label="COM_USER_LIST_FORM_LBL_LIST_CREATED_BY" description="COM_USER_LIST_FORM_DESC_LIST_CREATED_BY" hidden="true" hint="COM_USER_LIST_FORM_LBL_LIST_CREATED_BY"/>
+    <field name="avatar" type="editor" buttons="true" class="inputbox" filter="safehtml" label="COM_USER_LIST_FORM_LBL_LIST_AVATAR" description="COM_USER_LIST_FORM_DESC_LIST_AVATAR" hint="COM_USER_LIST_FORM_LBL_LIST_AVATAR"/>
+    <field name="username" type="editor" buttons="true" class="inputbox" filter="safehtml" label="COM_USER_LIST_FORM_LBL_LIST_USERNAME" description="COM_USER_LIST_FORM_DESC_LIST_USERNAME" hint="COM_USER_LIST_FORM_LBL_LIST_USERNAME"/>
+    <field name="year_of_birth" type="editor" buttons="true" class="inputbox" filter="safehtml" label="COM_USER_LIST_FORM_LBL_LIST_YEAR_OF_BIRTH" description="COM_USER_LIST_FORM_DESC_LIST_YEAR_OF_BIRTH" hint="COM_USER_LIST_FORM_LBL_LIST_YEAR_OF_BIRTH"/>
+    <field name="gender" type="editor" buttons="true" class="inputbox" filter="safehtml" label="COM_USER_LIST_FORM_LBL_LIST_GENDER" description="COM_USER_LIST_FORM_DESC_LIST_GENDER" hint="COM_USER_LIST_FORM_LBL_LIST_GENDER"/>
+    <field name="view_health_info" type="editor" buttons="true" class="inputbox" filter="safehtml" label="COM_USER_LIST_FORM_LBL_LIST_VIEW_HEALTH_INFO" description="COM_USER_LIST_FORM_DESC_LIST_VIEW_HEALTH_INFO" hint="COM_USER_LIST_FORM_LBL_LIST_VIEW_HEALTH_INFO"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>
