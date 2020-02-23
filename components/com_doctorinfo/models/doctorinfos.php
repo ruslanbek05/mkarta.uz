@@ -140,17 +140,11 @@ class DoctorinfoModelDoctorinfos extends \Joomla\CMS\MVC\Model\ListModel
             
 		$user = Factory::getUser();
 		$groups = $user->get('groups');
-		$selecteduser = JRequest::getVar('selecteduser');
-		//print_r($groups);die;
+		$Managermi = FALSE;
 		
-		
-		if ($selecteduser<>null) {
-			//$selecteduser given. check if user a doctor
-			$db_user_group_name = JFactory::getDbo();
-			if($user->get('id') > 0){
-				//signed in user
-				$Managermi = FALSE;
-				foreach ($groups as $group)
+		//check if user a manager
+		$db_user_group_name = JFactory::getDbo();
+		foreach ($groups as $group)
 				{
 				    //echo '<p>Group = ' . $group . '</p>';
 					$query_user_group_name = $db_user_group_name
@@ -166,17 +160,30 @@ class DoctorinfoModelDoctorinfos extends \Joomla\CMS\MVC\Model\ListModel
 					if($result_user_group_name == "Manager"){
 						//echo "bu doctor";die;
 						$Managermi = TRUE;
-						$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+						//$query->where("a.created_by = '".$db->escape($selecteduser)."'");
 					}
 				}
+				
+		$selecteduser = JRequest::getVar('selecteduser');
+		//print_r($groups);die;
+		
+		
+		if ($selecteduser<>null) {
+			//$selecteduser given.
+			if($user->get('id') > 0){
+				//signed in user
+				
+
 				if($Managermi){
 					//doctor
-					//$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+					$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+					//echo "manager";
 				}else{
 					//manager emas
 					//null. show selected
 					//$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
 					$query->where("a.created_by = '".$db->escape($selecteduser)."'");
+					//echo "any user";
 				}
 			}
 			else{
@@ -184,10 +191,21 @@ class DoctorinfoModelDoctorinfos extends \Joomla\CMS\MVC\Model\ListModel
 				//null. only own
 				//$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
 				$query->where("a.created_by = 0");	
+				//echo "not signed in";
 			}
 		}else{
+			//$selecteduser not given.
 			//null. only own
-			$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
+			//$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
+			if($Managermi){
+					//doctor
+					//echo "manager";
+				}else{
+					//manager emas
+					//null. show selected
+					$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
+					//echo "faqat uziniki";
+				}
 		}
 		
 		
@@ -204,7 +222,7 @@ class DoctorinfoModelDoctorinfos extends \Joomla\CMS\MVC\Model\ListModel
 
             // Add the list ordering clause.
             $orderCol  = $this->state->get('list.ordering', "a.id");
-            $orderDirn = $this->state->get('list.direction', "ASC");
+            $orderDirn = $this->state->get('list.direction', "DESC");
 
             if ($orderCol && $orderDirn)
             {
