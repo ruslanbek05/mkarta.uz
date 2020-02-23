@@ -83,7 +83,9 @@ $document->addStyleSheet(Uri::root() . 'media/com_user_list/css/list.css');
 		</tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->items as $i => $item) : ?>
+		<?php 
+		//print_r($this->items);die;
+		foreach ($this->items as $i => $item) : ?>
 			<?php $canEdit = $user->authorise('core.edit', 'com_user_list'); ?>
 
 			
@@ -102,8 +104,23 @@ $document->addStyleSheet(Uri::root() . 'media/com_user_list/css/list.css');
 				<?php if (isset($item->checked_out) && $item->checked_out) : ?>
 					<?php echo JHtml::_('jgrid.checkedout', $i, $item->uEditor, $item->checked_out_time, 'lists.', $canCheckin); ?>
 				<?php endif; ?>
-				<a href="<?php echo JRoute::_('index.php?option=com_user_list&view=list&id='.(int) $item->id); ?>">
-				<?php echo $this->escape($item->avatar); ?></a>
+				
+				<?php 
+				//link to detail
+				//echo JRoute::_('index.php?option=com_user_list&view=list&id='.(int) $item->id);
+				require_once JPATH_PLUGINS . '/user/cmavatar/helper.php';
+				$avatar = PlgUserCMAvatarHelper::getAvatar($item->id);
+				if($avatar == NULL){
+					//echo "nullll";die;
+					echo '<img src="images/avatars/empty.png"/>';
+				}else{
+					echo '<img src="'.$avatar.'"/>';
+				}
+				
+				
+				//echo $avatar;die;
+				//echo $this->escape($item->avatar); 
+				?>
 				</td>
 				<td>
 
@@ -118,8 +135,8 @@ $document->addStyleSheet(Uri::root() . 'media/com_user_list/css/list.css');
 					<?php echo $item->gender; ?>
 				</td>
 				<td>
-
-					<?php echo $item->view_health_info; ?>
+					<a href="index.php/?option=com_analysis&selecteduser=<?php echo $item->id; ?>" class="btn btn-default"><?php echo JText::_('COM_USER_LIST_HEALTH_HISTORY_BUTTON'); ?></a>
+					<?php //echo $item->view_health_info; ?>
 				</td>
 
 

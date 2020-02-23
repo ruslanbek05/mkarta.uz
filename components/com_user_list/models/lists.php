@@ -106,12 +106,22 @@ class User_listModelLists extends \Joomla\CMS\MVC\Model\ListModel
                         )
                 );
 
-            $query->from('`#__user_list` AS a');
             
+            
+            
+            
+            $query->from('`#__users` AS a');
+            
+            $query->select('fields_value_year_of_birth.value AS year_of_birth');
+			$query->join('LEFT', '#__fields_values AS fields_value_year_of_birth ON fields_value_year_of_birth.item_id = a.id');
+			$query->join('LEFT', '#__fields AS fields_year_of_birth ON fields_year_of_birth.id = fields_value_year_of_birth.field_id');
+			$query->where("( fields_year_of_birth.name = 'year-of-birth')");
 
-		// Join over the created by field 'created_by'
-		$query->join('LEFT', '#__users AS created_by ON created_by.id = a.created_by');
-            
+            $query->select('fields_value_gender.value AS gender');
+            $query->join('LEFT', '#__fields_values AS fields_value_gender ON fields_value_gender.item_id = a.id');
+			$query->join('LEFT', '#__fields AS fields_gender ON fields_gender.id = fields_value_gender.field_id');
+			$query->where("( fields_gender.name = 'gender')");
+			
 
             // Filter by search in title
             $search = $this->getState('filter.search');
@@ -151,7 +161,9 @@ class User_listModelLists extends \Joomla\CMS\MVC\Model\ListModel
 	{
 		$items = parent::getItems();
 		
-
+		//echo "sal";die;
+		//print_r($items);die;
+		
 		return $items;
 	}
 
