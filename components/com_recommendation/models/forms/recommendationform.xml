@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="date" class="inputbox" format="%d.%m.%Y" timeformat="24" filter="server_utc" translateformat="false" showtime="false" singleheader="false" todaybutton="false" weeknumbers="false" filltable="false" type="calendar" readonly="true" label="COM_RECOMMENDATION_FORM_LBL_RECOMMENDATION_DATE" description="COM_RECOMMENDATION_FORM_DESC_RECOMMENDATION_DATE" hidden="true" hint="COM_RECOMMENDATION_FORM_LBL_RECOMMENDATION_DATE"/>
+    <field name="recommendation" filter="safehtml" type="textarea" required="true" label="COM_RECOMMENDATION_FORM_LBL_RECOMMENDATION_RECOMMENDATION" description="COM_RECOMMENDATION_FORM_DESC_RECOMMENDATION_RECOMMENDATION" hint="COM_RECOMMENDATION_FORM_LBL_RECOMMENDATION_RECOMMENDATION"/>
+    <field name="id_analysis" label="COM_RECOMMENDATION_FORM_LBL_RECOMMENDATION_ID_ANALYSIS" description="COM_RECOMMENDATION_FORM_DESC_RECOMMENDATION_ID_ANALYSIS" hint="COM_RECOMMENDATION_FORM_LBL_RECOMMENDATION_ID_ANALYSIS"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>
