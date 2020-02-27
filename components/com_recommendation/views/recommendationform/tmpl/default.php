@@ -42,20 +42,30 @@ $canEdit = RecommendationHelpersRecommendation::canUserEdit($this->item, $user);
 			<h1><?php echo Text::sprintf('COM_RECOMMENDATION_EDIT_ITEM_TITLE', $this->item->id); ?></h1>
 		<?php else: ?>
 			<h1><?php echo Text::_('COM_RECOMMENDATION_ADD_ITEM_TITLE'); ?></h1>
-		<?php endif; ?>
+		<?php 
+		//print_r($this->item);die;
+		endif; 
+		$id_analysis = JRequest::getVar('id_analysis');
+		
+		?>
 
 		<form id="form-recommendation"
-			  action="<?php echo Route::_('index.php?option=com_recommendation&task=recommendation.save'); ?>"
+			  action="<?php 
+			  if($id_analysis > 0){
+			  	echo Route::_('index.php?option=com_recommendation&task=recommendation.save&id_analysis='.$id_analysis);
+			  }
+			   ?>"
 			  method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
 			
 	<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
 
 				<?php echo $this->form->getInput('created_by'); ?>
 	<input type="hidden" name="jform[date]" value="<?php echo $this->item->date; ?>" />
+	
 
 	<?php echo $this->form->renderField('recommendation'); ?>
 
-	<?php echo $this->form->renderField('id_analysis'); ?>
+	<?php //echo $this->form->renderField('id_analysis'); ?>
 
 			<div class="control-group">
 				<div class="controls">

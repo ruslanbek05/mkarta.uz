@@ -304,6 +304,7 @@ class RecommendationModelRecommendationForm extends \Joomla\CMS\MVC\Model\FormMo
      */
     public function save($data)
     {
+    	//echo "method";die;
         $id    = (!empty($data['id'])) ? $data['id'] : (int) $this->getState('recommendation.id');
         $state = (!empty($data['state'])) ? 1 : 0;
         $user  = Factory::getUser();
@@ -326,6 +327,8 @@ class RecommendationModelRecommendationForm extends \Joomla\CMS\MVC\Model\FormMo
         }
 
         $table = $this->getTable();
+        
+        //print_r($table);die;
 
         if ($table->save($data) === true)
         {

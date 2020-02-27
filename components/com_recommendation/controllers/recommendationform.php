@@ -71,6 +71,7 @@ class RecommendationControllerRecommendationForm extends \Joomla\CMS\MVC\Control
 	 */
 	public function save($key = NULL, $urlVar = NULL)
 	{
+		//echo "controller";die;
 		// Check for request forgeries.
 		Session::checkToken() or jexit(Text::_('JINVALID_TOKEN'));
 
@@ -123,7 +124,17 @@ class RecommendationControllerRecommendationForm extends \Joomla\CMS\MVC\Control
 
 			$this->redirect();
 		}
+		$id_analysis = JRequest::getVar('id_analysis');
+		$data['id_analysis'] = $id_analysis;
+		//$date = new JDate();
+		
+    	//$date = new JDate();
+    	//$date = date('d/m/Y', time());
+    	//$data['date'] = $date;
+    	$date = date('Y-m-d H:i:s');
+        $data['date'] = $date;
 
+		
 		// Attempt to save the data.
 		$return = $model->save($data);
 

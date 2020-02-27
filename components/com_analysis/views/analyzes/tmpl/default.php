@@ -157,6 +157,7 @@ $document->addStyleSheet(Uri::root() . 'media/com_analysis/css/list.css');
 						<?php if ($canDelete): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_analysis&task=analysisform.remove&id=' . $item->id, false, 2); ?>" class="btn btn-mini delete-button" type="button"><i class="icon-trash" ></i></a>
 						<?php endif; ?>
+						<a href="index.php/?option=com_recommendation&view=recommendationform&id_analysis=<?php echo $item->id; ?>" class="btn btn-default"><?php echo JText::_('COM_ANALYSIS_ADD_RECOMMENDATION'); ?></a>
 					</td>
 				<?php endif; ?>
 
