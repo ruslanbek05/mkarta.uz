@@ -33,6 +33,63 @@ $canDelete  = $user->authorise('core.delete', 'com_user_list');
 // Import CSS
 $document = Factory::getDocument();
 $document->addStyleSheet(Uri::root() . 'media/com_user_list/css/list.css');
+
+
+
+
+
+
+
+
+
+
+
+
+
+//check if user is a doctor
+//$user = Factory::getUser();
+$groups = $user->get('groups');
+
+	$doctormi = FALSE;
+	$db_user_group_name = JFactory::getDbo();
+	if($user->get('id') > 0){
+
+		//signed in user
+		foreach ($groups as $group)
+		{
+			$query_user_group_name = $db_user_group_name
+			    ->getQuery(true)
+			    ->select('title')
+			    ->from($db_user_group_name->quoteName('#__usergroups'))
+			    ->where($db_user_group_name->quoteName('id') . " = " . $db_user_group_name->quote($group));
+
+			$db_user_group_name->setQuery($query_user_group_name);
+			$result_user_group_name = $db_user_group_name->loadResult();
+			if($result_user_group_name == "Doctor"){
+				//echo "bu doctor";die;
+				$doctormi = TRUE;
+			}
+		}
+
+	}
+
+		
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 <form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post"
@@ -84,6 +141,9 @@ $document->addStyleSheet(Uri::root() . 'media/com_user_list/css/list.css');
 		</tfoot>
 		<tbody>
 		<?php 
+		if($doctormi){
+			
+		
 		//print_r($this->items);die;
 		foreach ($this->items as $i => $item) : ?>
 			<?php $canEdit = $user->authorise('core.edit', 'com_user_list'); ?>
@@ -146,7 +206,8 @@ $document->addStyleSheet(Uri::root() . 'media/com_user_list/css/list.css');
 				<?php endif; ?>
 
 			</tr>
-		<?php endforeach; ?>
+		<?php endforeach; 
+		}?>
 		</tbody>
 	</table>
         </div>
