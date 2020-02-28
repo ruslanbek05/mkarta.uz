@@ -33,6 +33,55 @@ $canDelete  = $user->authorise('core.delete', 'com_analysis');
 // Import CSS
 $document = Factory::getDocument();
 $document->addStyleSheet(Uri::root() . 'media/com_analysis/css/list.css');
+
+
+
+
+
+
+
+
+
+
+
+
+//check if user is a doctor
+//$user = Factory::getUser();
+$groups = $user->get('groups');
+
+	$doctormi = FALSE;
+	$db_user_group_name = JFactory::getDbo();
+	if($user->get('id') > 0){
+
+		//signed in user
+		foreach ($groups as $group)
+		{
+			$query_user_group_name = $db_user_group_name
+			    ->getQuery(true)
+			    ->select('title')
+			    ->from($db_user_group_name->quoteName('#__usergroups'))
+			    ->where($db_user_group_name->quoteName('id') . " = " . $db_user_group_name->quote($group));
+
+			$db_user_group_name->setQuery($query_user_group_name);
+			$result_user_group_name = $db_user_group_name->loadResult();
+			if($result_user_group_name == "Doctor"){
+				//echo "bu doctor";die;
+				$doctormi = TRUE;
+			}
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 <form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post"
@@ -157,7 +206,9 @@ $document->addStyleSheet(Uri::root() . 'media/com_analysis/css/list.css');
 						<?php if ($canDelete): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_analysis&task=analysisform.remove&id=' . $item->id, false, 2); ?>" class="btn btn-mini delete-button" type="button"><i class="icon-trash" ></i></a>
 						<?php endif; ?>
+						<?php if ($doctormi): ?>
 						<a href="index.php/?option=com_recommendation&view=recommendationform&id_analysis=<?php echo $item->id; ?>" class="btn btn-default"><?php echo JText::_('COM_ANALYSIS_ADD_RECOMMENDATION'); ?></a>
+						<?php endif; ?>
 					</td>
 				<?php endif; ?>
 
