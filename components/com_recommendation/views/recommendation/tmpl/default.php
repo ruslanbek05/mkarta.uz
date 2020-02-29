@@ -15,6 +15,7 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_recommenda
 {
 	$canEdit = JFactory::getUser()->id == $this->item->created_by;
 }
+if($canEdit):
 ?>
 
 <div class="item_fields">
@@ -64,4 +65,5 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_recommenda
 		</div>
 	</div>
 
+<?php endif; ?>
 <?php endif; ?>

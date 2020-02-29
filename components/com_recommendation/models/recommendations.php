@@ -109,8 +109,46 @@ class RecommendationModelRecommendations extends \Joomla\CMS\MVC\Model\ListModel
 
 		// Join over the created by field 'created_by'
 		$query->join('LEFT', '#__users AS created_by ON created_by.id = a.created_by');
+		$query->join('LEFT', '#__analysis AS analiz_table ON analiz_table.id = a.id_analysis');
             
 
+
+
+
+
+
+		require_once("myfunc.php");
+		$user = Factory::getUser();
+		$user_id = $user->get('id');
+		$doctormi = is_in_group($user_id,"Doctor");
+		
+		$aim = JRequest::getVar('aim');
+		if($aim == "tome"){
+			//show only user's
+			//echo $user_id;die;
+			$query->where("analiz_table.created_by = '".$db->escape($user_id)."'");
+		}elseif($aim == "fromme"){
+			//check to doctor
+			if($doctormi == TRUE){
+				//show only doctor's
+				$query->where("a.created_by = '".$db->escape($user_id)."'");
+			}else{
+				//not doctor, aim is fromme
+				$query->where("analiz_table.id = 0");
+			}
+		}else{
+			//show nothing
+			$query->where("analiz_table.id = 0");
+		}
+		
+		
+
+
+
+
+
+
+            
             // Filter by search in title
             $search = $this->getState('filter.search');
 
@@ -141,6 +179,9 @@ class RecommendationModelRecommendations extends \Joomla\CMS\MVC\Model\ListModel
 		{
 			$query->where("a.`date` <= '".$db->escape($filter_date_to)."'");
 		}
+		
+		
+
 
             // Add the list ordering clause.
             $orderCol  = $this->state->get('list.ordering', "a.id");

@@ -5,6 +5,64 @@ $my_kun = date('d');
 $my_timestamp = time();
 		
 		
+
+function is_in_group($user_id,$group_name){
+
+$db = JFactory::getDbo();
+$query = $db
+    ->getQuery(true)
+    ->select('COUNT(*)')
+    ->from($db->quoteName('#__user_usergroup_map','a'))
+    ->join('LEFT', $db->quoteName('#__usergroups', 'b') . ' ON ' . $db->quoteName('a.group_id') . ' = ' . $db->quoteName('b.id'))
+    ->where($db->quoteName('a.user_id') . " = " . $db->quote($user_id))
+    ->where($db->quoteName('b.title') . " = " . $db->quote($group_name));
+
+// Reset the query using our newly populated query object.
+$db->setQuery($query);
+$count = $db->loadResult();
+
+if($count > 0){
+	return TRUE;
+}else{
+	return FALSE;
+}
+
+
+/*
+
+//check if user is a doctor
+$user = Factory::getUser();
+$groups = $user->get('groups');
+
+	$doctormi = FALSE;
+	$db_user_group_name = JFactory::getDbo();
+	if($user->get('id') > 0){
+
+		//signed in user
+		foreach ($groups as $group)
+		{
+			$query_user_group_name = $db_user_group_name
+			    ->getQuery(true)
+			    ->select('title')
+			    ->from($db_user_group_name->quoteName('#__usergroups'))
+			    ->where($db_user_group_name->quoteName('id') . " = " . $db_user_group_name->quote($group));
+
+			$db_user_group_name->setQuery($query_user_group_name);
+			$result_user_group_name = $db_user_group_name->loadResult();
+			if($result_user_group_name == "Doctor"){
+				//echo "bu doctor";die;
+				$doctormi = TRUE;
+				return $doctormi;
+			}
+		}
+
+	}
+	
+return $doctormi;
+*/
+}
+
+
 		
 //$file = 'images/themb/1/1/1/index.html';
 //create_file_with_dir($file);

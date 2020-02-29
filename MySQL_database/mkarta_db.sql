@@ -2653,7 +2653,7 @@ CREATE TABLE IF NOT EXISTS `zzz_users` (
 --
 
 INSERT INTO `zzz_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
-(110, 'Super User', 'ruslan', 'ruslanbek05@gmail.com', '$2y$10$QyBf.fnoL2JSsIuPpHYmpecQ4/mBiHPulN2uXarfk9aX8nl9zYQk2', 0, 1, '2020-02-12 07:38:07', '2020-02-15 15:43:38', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
+(110, 'Super User', 'ruslan', 'ruslanbek05@gmail.com', '', 0, 1, '2020-02-12 07:38:07', '2020-02-15 15:43:38', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
 
 -- --------------------------------------------------------
 
