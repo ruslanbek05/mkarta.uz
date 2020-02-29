@@ -198,7 +198,7 @@ $groups = $user->get('groups');
 				</td>
 
 
-								<?php if ($canEdit || $canDelete): ?>
+								<?php //if ($canEdit || $canDelete): ?>
 					<td class="center">
 						<?php if ($canEdit): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_analysis&task=analysisform.edit&id=' . $item->id, false, 2); ?>" class="btn btn-mini" type="button"><i class="icon-edit" ></i></a>
@@ -206,11 +206,13 @@ $groups = $user->get('groups');
 						<?php if ($canDelete): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_analysis&task=analysisform.remove&id=' . $item->id, false, 2); ?>" class="btn btn-mini delete-button" type="button"><i class="icon-trash" ></i></a>
 						<?php endif; ?>
-						<?php if ($doctormi): ?>
+						<?php 
+						//echo $doctormi;
+						if ($doctormi): ?>
 						<a href="index.php/?option=com_recommendation&view=recommendationform&id_analysis=<?php echo $item->id; ?>" class="btn btn-default"><?php echo JText::_('COM_ANALYSIS_ADD_RECOMMENDATION'); ?></a>
 						<?php endif; ?>
 					</td>
-				<?php endif; ?>
+				<?php //endif; ?>
 
 			</tr>
 		<?php endforeach; ?>
