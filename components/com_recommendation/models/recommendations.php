@@ -142,7 +142,10 @@ class RecommendationModelRecommendations extends \Joomla\CMS\MVC\Model\ListModel
 		}
 		
 		$id_analysis = JRequest::getVar('id_analysis');
-		$query->where("a.id_analysis = '".$db->escape($id_analysis)."'");
+		if($id_analysis > 0){
+			$query->where("a.id_analysis = '".$db->escape($id_analysis)."'");
+		}
+		
 		
 		
 
