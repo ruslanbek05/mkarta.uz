@@ -141,8 +141,10 @@ class RecommendationModelRecommendations extends \Joomla\CMS\MVC\Model\ListModel
 			$query->where("analiz_table.id = 0");
 		}
 		
+		$id_analysis = JRequest::getVar('id_analysis');
+		$query->where("a.id_analysis = '".$db->escape($id_analysis)."'");
 		
-
+		
 
 
 

@@ -116,6 +116,9 @@ class AnalysisModelAnalyzes extends \Joomla\CMS\MVC\Model\ListModel
 		// Join over the foreign key 'type_of_analysis'
 		$query->select('`#__type_of_analysis_3387938`.`type_of_analysis_ru` AS #__type_of_analysis_fk_value_3387938');
 		$query->join('LEFT', '#__type_of_analysis AS #__type_of_analysis_3387938 ON #__type_of_analysis_3387938.`id` = a.`type_of_analysis`');
+		
+		//$query->select('`recommendation`.`recommendation` AS recommendation_field');
+        //$query->join('LEFT', '#__recommendation AS recommendation ON recommendation.`id_analysis` = a.`id`');
             
 
             // Filter by search in title
@@ -248,6 +251,8 @@ class AnalysisModelAnalyzes extends \Joomla\CMS\MVC\Model\ListModel
 	{
 		$items = parent::getItems();
 		
+		
+		
 		foreach ($items as $item)
 		{
 
@@ -277,9 +282,28 @@ class AnalysisModelAnalyzes extends \Joomla\CMS\MVC\Model\ListModel
 
 				$item->type_of_analysis = !empty($textValue) ? implode(', ', $textValue) : $item->type_of_analysis;
 			}
+			
+			
+//count of recommendations
+//print_r($item->id);die;
+$db_rc    = JFactory::getDbo();
+$query_rc = $db_rc->getQuery(true);
+$query_rc
+		->select('COUNT(*)')
+		->from($db_rc->quoteName('#__recommendation'))
+		->where($db_rc->quoteName('#__recommendation.id_analysis') . ' = '. $db_rc->quote($db_rc->escape($item->id)));
+
+$db_rc->setQuery($query_rc);
+$count = $db_rc->loadResult();
+//print_r($count);die;
+$item->recommendation_count =$count;
+
+//END//count of recommendations
 
 		}
-
+		
+		//print_r($items);die;
+		
 		return $items;
 	}
 

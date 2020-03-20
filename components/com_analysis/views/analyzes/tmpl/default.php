@@ -129,7 +129,9 @@ $groups = $user->get('groups');
 		</tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->items as $i => $item) : ?>
+		<?php 
+		//print_r($this->items);//die;
+		foreach ($this->items as $i => $item) : ?>
 			<?php $canEdit = $user->authorise('core.edit', 'com_analysis'); ?>
 
 							<?php if (!$canEdit && $user->authorise('core.edit.own', 'com_analysis')): ?>
@@ -195,6 +197,18 @@ $groups = $user->get('groups');
 				<td>
 
 					<?php echo $item->date; ?>
+					</br>
+					<?php 
+//					print_r($item);die;
+					if($item->recommendation_count > 0):?><a type="button" class="btn btn-success" href="index.php/?option=com_recommendation&aim=tome&id_analysis=<?php echo $item->id; ?>">
+					<?php echo $item->recommendation_count . " "; ?><?php 
+					if($item->recommendation_count > 1){
+						echo Text::_('COM_ANALYSIS_COUNT_OF_RECOMMENDATIONS');
+					}elseif($item->recommendation_count = 1){
+						echo Text::_('COM_ANALYSIS_COUNT_OF_RECOMMENDATION');
+					}
+					?></a>
+					<?php endif; ?>
 				</td>
 
 
