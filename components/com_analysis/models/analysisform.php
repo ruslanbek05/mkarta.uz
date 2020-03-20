@@ -304,6 +304,8 @@ class AnalysisModelAnalysisForm extends \Joomla\CMS\MVC\Model\FormModel
      */
     public function save($data)
     {
+    	
+    	
         $id    = (!empty($data['id'])) ? $data['id'] : (int) $this->getState('analysis.id');
         $state = (!empty($data['state'])) ? 1 : 0;
         $user  = Factory::getUser();
@@ -326,6 +328,10 @@ class AnalysisModelAnalysisForm extends \Joomla\CMS\MVC\Model\FormModel
         }
 
         $table = $this->getTable();
+        
+        //print_r($data["user_picked"]);die;
+        
+
 
         if ($table->save($data) === true)
         {

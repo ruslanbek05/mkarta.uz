@@ -175,6 +175,32 @@ class AnalysisTableanalysis extends \Joomla\CMS\Table\Table
 	 */
 	public function check()
 	{
+		$data = Factory::getApplication()->input->get('jform', array(), 'array');
+		
+		        if(array_key_exists('user_picked', $data)) {
+        	$boshqa_odamniki = JRequest::getVar('boshqa_odamniki');
+	        	if($boshqa_odamniki == 1){
+	        		//print_r($data);die;
+	        	//if($data["user_picked"] > 1){
+				//boshqa_odamniki=1
+				//diagnostic center is adding
+				
+				$this->adder_id = $this->created_by;
+				$this->created_by = $data["user_picked"];
+				//print_r($this);die;
+				
+				//echo "boshqa_odamniki";die;
+			}
+        }else{
+			//user adding
+			
+			///echo "111";die;
+		}
+		//die;
+		
+		
+		//$this->created_by = 55;
+		//print_r($data);die;
 		
 		
 		//require_once("../mkarta.uz_protected/image.php");

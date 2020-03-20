@@ -123,6 +123,8 @@ class AnalysisControllerAnalysisForm extends \Joomla\CMS\MVC\Controller\FormCont
 
 			$this->redirect();
 		}
+		
+		//print_r($data);die;
 
 		// Attempt to save the data.
 		$return = $model->save($data);
@@ -153,6 +155,13 @@ class AnalysisControllerAnalysisForm extends \Joomla\CMS\MVC\Controller\FormCont
 		$menu = Factory::getApplication()->getMenu();
 		$item = $menu->getActive();
 		$url  = (empty($item->link) ? 'index.php?option=com_analysis&view=analyzes' : $item->link);
+		if(array_key_exists('user_picked', $data)) {
+        	$boshqa_odamniki = JRequest::getVar('boshqa_odamniki');
+        	if($boshqa_odamniki == 1){
+        		$url = $url . "&boshqa_odamniki=1";
+        	}
+        }
+		//print_r($url);die;
 		$this->setRedirect(Route::_($url, false));
 
 		// Flush the data from the session.

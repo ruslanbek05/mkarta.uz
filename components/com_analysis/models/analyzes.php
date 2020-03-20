@@ -163,7 +163,11 @@ class AnalysisModelAnalyzes extends \Joomla\CMS\MVC\Model\ListModel
 		
 		
 		
-
+		
+		
+		
+		
+		
 
 
 
@@ -173,6 +177,13 @@ class AnalysisModelAnalyzes extends \Joomla\CMS\MVC\Model\ListModel
 		$groups = $user->get('groups');
 		$selecteduser = JRequest::getVar('selecteduser');
 		//print_r($groups);die;
+		
+	$boshqa_odamniki = JRequest::getVar('boshqa_odamniki');
+	if ($boshqa_odamniki<>null) {
+		//all analysis added by diagnostic center
+		$query->where("a.adder_id = '".$db->escape($user->get('id'))."'");
+	}else{
+			
 		
 		
 		if ($selecteduser<>null) {
@@ -219,9 +230,11 @@ class AnalysisModelAnalyzes extends \Joomla\CMS\MVC\Model\ListModel
 			$query->where("a.created_by = '".$db->escape($user->get('id'))."'");	
 		}
 		
+	}
 		
 		
-
+		
+		
 
 
 
@@ -232,7 +245,7 @@ class AnalysisModelAnalyzes extends \Joomla\CMS\MVC\Model\ListModel
 		
             // Add the list ordering clause.
             $orderCol  = $this->state->get('list.ordering', "a.id");
-            $orderDirn = $this->state->get('list.direction', "ASC");
+            $orderDirn = $this->state->get('list.direction', "DESC");
 
             if ($orderCol && $orderDirn)
             {
