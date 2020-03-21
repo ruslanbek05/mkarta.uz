@@ -21,13 +21,15 @@ use Joomla\CMS\Factory as JFactory;
 
 class Dispatcher extends BaseDispatcher
 {
+	/** @var   string  The name of the default view, in case none is specified */
+	public $defaultView = 'ControlPanel';
+
 	use ViewAliases
 	{
 		onBeforeDispatch as onBeforeDispatchViewAliases;
 	}
-
-	/** @var   string  The name of the default view, in case none is specified */
-	public $defaultView = 'ControlPanel';
+	/** @var  \Akeeba\Backup\Admin\Container  The container we belong to */
+	protected $container = null;
 
 	public function __construct(Container $container, array $config)
 	{
@@ -182,18 +184,34 @@ class Dispatcher extends BaseDispatcher
 
 	public function onAfterDispatch()
 	{
-		// See the after_render.php file for an explanation. TL;DR: CloudFlare Rocket Loader is a broken pile of crap.
-		if ($this->input->get('format', 'html') != 'html')
-		{
-			return;
-		}
+		$this->container->jsBundler->bundleAndInclude();
 
-		if (!function_exists('akeebaBackupOnAfterRenderToFixBrokenCloudFlareRocketLoader'))
+		/**
+		 * If JavaScript bundling is disabled we will have to apply our CloudFlare Rocket Loader workaround.
+		 *
+		 * See the after_render.php file for a lengthy explanation.
+		 */
+		if ($this->container->params->get('optimizeJS', 1) != 1)
 		{
-			require_once __DIR__ . '/after_render.php';
-		}
+			if ($this->input->get('format', 'html') != 'html')
+			{
+				return;
+			}
 
-		JFactory::getApplication()->registerEvent('onAfterRender', 'akeebaBackupOnAfterRenderToFixBrokenCloudFlareRocketLoader');
+			if (!function_exists('akeebaBackupOnAfterRenderToFixBrokenCloudFlareRocketLoader'))
+			{
+				require_once __DIR__ . '/after_render.php';
+			}
+
+			try
+			{
+				JFactory::getApplication()->registerEvent('onAfterRender', 'akeebaBackupOnAfterRenderToFixBrokenCloudFlareRocketLoader');
+			}
+			catch (\Exception $e)
+			{
+				// Ooops. JFactory died on us. Bye-bye!
+			}
+		}
 	}
 
 	public function loadAkeebaEngine()
@@ -240,22 +258,18 @@ class Dispatcher extends BaseDispatcher
 	 */
 	private function loadCommonJavascript()
 	{
-		\JHtml::_('jquery.framework');
-
-		$mediaVersion = $this->container->mediaVersion;
-
-		// Do not mode: everything depends on UserInterfaceCommon
-		$this->container->template->addJS('media://com_akeeba/js/UserInterfaceCommon.min.js', false, false, $mediaVersion);
+		// Do not move: everything depends on UserInterfaceCommon
+		$this->container->jsBundler->addJS('media://com_akeeba/js/UserInterfaceCommon.min.js');
 		// Do not move: System depends on Modal
-		$this->container->template->addJS('media://com_akeeba/js/Modal.min.js', false, false, $mediaVersion);
+		$this->container->jsBundler->addJS('media://com_akeeba/js/Modal.min.js');
 		// Do not move: System depends on Ajax
-		$this->container->template->addJS('media://com_akeeba/js/Ajax.min.js', false, false, $mediaVersion);
+		$this->container->jsBundler->addJS('media://com_akeeba/js/Ajax.min.js');
 		// Do not move: System depends on Ajax
-		$this->container->template->addJS('media://com_akeeba/js/System.min.js', false, false, $mediaVersion);
+		$this->container->jsBundler->addJS('media://com_akeeba/js/System.min.js');
 		// Do not move: Tooltip depends on System
-		$this->container->template->addJS('media://com_akeeba/js/Tooltip.min.js', false, false, $mediaVersion);
+		$this->container->jsBundler->addJS('media://com_akeeba/js/Tooltip.min.js');
 		// Always add last (it's the least important)
-		$this->container->template->addJS('media://com_akeeba/js/piecon.min.js', false, false, $mediaVersion);
+		$this->container->jsBundler->addJS('media://com_akeeba/js/piecon.min.js');
 	}
 
 	/**

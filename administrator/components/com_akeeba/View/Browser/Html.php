@@ -80,6 +80,9 @@ class Html extends BaseView
 
 	protected function onBeforeMain()
 	{
+		// Load the view-specific Javascript
+		$this->container->jsBundler->addJs('media://com_akeeba/js/Browser.min.js');
+
 		/** @var Browser $model */
 		$model = $this->getModel();
 

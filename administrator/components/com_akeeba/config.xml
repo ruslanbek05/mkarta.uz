@@ -33,6 +33,15 @@
 			<option value="1">COM_AKEEBA_CONFIG_BACKEND_DARKMODE_ALWAYS</option>
 		</field>
 
+		<field name="optimizeJS" type="radio" default="1"
+			   label="COM_AKEEBA_CONFIG_BACKEND_OPTIMIZEJS_LABEL"
+			   description="COM_AKEEBA_CONFIG_BACKEND_OPTIMIZEJS_DESC"
+			   class="switcher btn-group">
+			<option value="0">JNo</option>
+			<option value="1">JYes</option>
+		</field>
+
+
 		<field name="dateformat" type="text" default="" size="30"
 			   label="COM_AKEEBA_CONFIG_DATEFORMAT_LABEL"
 			   description="COM_AKEEBA_CONFIG_DATEFORMAT_DESC"/>

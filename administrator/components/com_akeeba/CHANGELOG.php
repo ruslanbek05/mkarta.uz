@@ -1,4 +1,19 @@
 <?php die();?>
+Akeeba Backup 7.1.0
+================================================================================
++ Automatic security check of the backup output directory
++ Automatic JavaScript bundling for improved performance
+~ Improved storage of temporary data during backup [akeeba/engine#114]
+~ Log files now have a .php extension to prevent unauthorized access in very rare cases
+~ Enforce the recommended, sensible security measures when using the default backup output directory
+~ Ongoing JavaScript refactoring
+~ Google Drive: fetch up to 100 shared drives (previously: up to 10)
+# [HIGH] An invalid output directory (e.g. by importing a backup profile) will cause a fatal exception in the Control Panel (gh-667)
+# [MEDIUM] CloudFiles post-processing engine: Fixed file uploads
+# [MEDIUM] Swift post-processing engine: Fixed file uploads
+# [LOW] Send by Email reported a successful email sent as a warning
+# [LOW] Database dump: foreign keys' (constraints) and local indices' names did not get their prefix replaced like tables, views etc do
+
 Akeeba Backup 7.0.2
 ================================================================================
 ~ Log the full path to the computed site's root, without <root> replacement

@@ -68,14 +68,15 @@ class Toolbar extends BaseToolbar
 		JToolbarHelper::help(null, false, 'https://www.akeebabackup.com/documentation/akeeba-backup-documentation/configuration.html');
 
 		$js = <<< JS
-;;
-
-jQuery(document).ready(function(){
-	jQuery('#toolbar-lightning>button').addClass('btn-primary');
+akeeba.System.documentReady(function(){
+    var elButtons = document.querySelectorAll('#toolbar-lightning>button');
+    akeeba.System.iterateNodes(elButtons, function (elButton) {
+		akeeba.System.addClass(elButton, 'btn-primary');        
+    });
 });
 
 JS;
-		JFactory::getDocument()->addScriptDeclaration($js);
+		$this->container->jsBundler->addInlineJS($js);
 	}
 
 	public function onConfigurationWizardsMain()
