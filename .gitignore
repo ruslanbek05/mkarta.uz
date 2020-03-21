@@ -3,3 +3,4 @@ images/
 administrator/logs/
 administrator/components/com_akeeba/
 administrator/cache/
+administrator/components/com_akeeba/backup/akeeba.log
