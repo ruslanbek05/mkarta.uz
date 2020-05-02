@@ -153,6 +153,25 @@ if (!$canEdit && JFactory::getUser()->authorise('core.edit.own', 'com_analysis')
 
 </div>
 
+<script>
+jQuery(document).ready(function(){
+  jQuery("button").click(function(){
+  	//alert("Hello! I am an alert box!!");
+    //jQuery("#div1").load("http://localhost/mkarta.uz/demo_test.txt");
+    //jQuery("#div1").load("http://localhost/mkarta.uz/index.php/ru/?option=com_analysis&task=analysis.aajax");
+    jQuery("#div1").load("<?php echo JUri::base();?>index.php/ru/?option=com_analysis&task=analysis.aajax");
+    
+  });
+});
+</script>
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+
+
+
+
 <?php if($canEdit): ?>
 
 	<a class="btn" href="<?php echo JRoute::_('index.php?option=com_analysis&task=analysis.edit&id='.$this->item->id); ?>"><?php echo JText::_("COM_ANALYSIS_EDIT_ITEM"); ?></a>

@@ -30,6 +30,12 @@ class AnalysisControllerAnalysis extends \Joomla\CMS\MVC\Controller\BaseControll
      *
      * @throws Exception
 	 */
+	 
+	 public function aajax()
+	{
+		echo "444";die;
+	}
+	
 	public function edit()
 	{
 		$app = Factory::getApplication();
